@@ -1,0 +1,33 @@
+{
+   "name": "nodejs-server-myit",
+   "version": "1.0.0",
+   "description": "",
+   "main": "server.ts",
+   "dependencies": {
+      "cors": "^2.8.5",
+      "crypto": "^1.0.1",
+      "dotenv": "^8.2.0",
+      "express": "^4.17.1",
+      "jsonwebtoken": "^8.5.1",
+      "multer": "^1.4.2",
+      "mysql": "^2.18.1",
+      "nodemon": "^2.0.6",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.28"
+   },
+   "devDependencies": {
+      "@types/express": "^4.17.8",
+      "@types/jsonwebtoken": "^8.5.0",
+      "@types/node": "^8.0.29",
+      "ts-node": "3.3.0",
+      "typescript": "3.3.3333"
+   },
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "devStart": "nodemon server.ts",
+      "devStartAuth": "nodemon authServer.ts",
+      "start": "ts-node src/index.ts"
+   },
+   "author": "Faragó Balázs Szpoti",
+   "license": "ISC"
+}
