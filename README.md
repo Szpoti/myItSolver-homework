@@ -22,6 +22,6 @@ Steps to run this project:
 - Nodemon: "^2.0.6",
 - Typeorm: "0.2.28"
 
-##Swagger documentation
+## Swagger documentation
 https://app.swaggerhub.com/apis-docs/Szpoti/Szpoti_MyItSolver_homework/1.0.0
 
