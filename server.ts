@@ -4,11 +4,7 @@ import express = require("express");
 const app = express();
 import jwt = require("jsonwebtoken");
 import {Article} from "./src/entity/Article";
-import { type } from "os";
 import { Requester } from "./src/entity/Requesters";
-import { parse } from "querystring";
-import util = require("util");
-import multer = require("multer");
 import controller = require("./src/controller/file.controller");
 const globalAny:any = global;
 globalAny.__basedir = __dirname;
@@ -16,8 +12,8 @@ globalAny.__basedir = __dirname;
 app.use(express.json());
 
 
-app.post("/detailed", authenticateToken, async (req, res) => {
-  const articleId = req.body.id;
+app.get("/detailed/:id", authenticateToken, async (req, res) => {
+  const articleId = parseInt(req.params.id);
 
   const article = await typeorm.getManager().getRepository(Article).findOne(articleId);
   
@@ -76,9 +72,10 @@ app.post("/create_article", async (req, res) => {
   });
   });
 
-app.post("/upload", controller.upload);
-
-app.get("/files/:name", controller.download)
+app.post("/upload", (req,res) => {
+  controller.upload(req, res);
+  return res.sendStatus(200);
+});
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
