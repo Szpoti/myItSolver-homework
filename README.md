@@ -5,10 +5,10 @@ Steps to run this project:
 1. Run `npm i` command
 2. Setup database settings inside `ormconfig.json` file
 3. Create a .env file.
- 3.1. Inside the .env file, create a variable ACCESS_TOKEN_SECRET;
- 3.2. Give it a random value. For good security, use crypto.randomBytes(16).toString('hex') to get a string to use as a secret.
-4. Run `npm run devStart` to start the server.ts
-5. Run `npm run devStartAuth` to start the authServer.ts
+4. Inside the .env file, create a variable ACCESS_TOKEN_SECRET;
+5. Give it a random value. For good security, use crypto.randomBytes(16).toString('hex') to get a string to use as a secret.
+6. Run `npm run devStart` to start the server.ts
+7. Run `npm run devStartAuth` to start the authServer.ts
 
 ## Technologies
 
