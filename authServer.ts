@@ -18,14 +18,11 @@ app.post("/renew_token", (req, res) => {
     let requester = await repo.findOneOrFail({token:accessToken});
     requester.remainings = 5;
     await repo.save(requester);
-    //reset tokens remainings to 5
     res.json({ remaining: 5 });
   });
 });
 
 app.post("/token", async (req, res) => {
-  // Authenticate
-
   const platformName = req.body.platform;
   const platform = { name: platformName };
 

@@ -9,21 +9,14 @@ import { Requester } from "./src/entity/Requesters";
 import { parse } from "querystring";
 import util = require("util");
 import multer = require("multer");
-import cors = require("cors");
 import controller = require("./src/controller/file.controller");
 const globalAny:any = global;
 globalAny.__basedir = __dirname;
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
 
-app.use(cors(corsOptions));
 app.use(express.json());
 
 
 app.post("/detailed", authenticateToken, async (req, res) => {
-  console.log("Detailed article");
-  
   const articleId = req.body.id;
 
   const article = await typeorm.getManager().getRepository(Article).findOne(articleId);
@@ -53,7 +46,6 @@ app.get("/list/:page/:pageSize", async (req, res) => {
 
 app.get("/src/images/uploads/:name", (req,res) => {
   const imageName = req.params.name;
-  console.log(globalAny.__basedir + "/src/images/uploads/" + imageName);
   res.sendFile(globalAny.__basedir + "/src/images/uploads/" + imageName)
 })
 
@@ -90,7 +82,6 @@ app.get("/files/:name", controller.download)
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
-  console.log("Authenticate token");
   
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) return res.sendStatus(401);
@@ -125,9 +116,6 @@ async function isThereAnyRemainingsLeft(token) {
   const requester = await repo.findOne({token: token}).catch(err => {
     throw err;
   });
-  console.log(requester.remainings);
-  const isThereAnyRemainingsLeft = requester.remainings > 0;
-  
   
   return requester.remainings > 0;
 }
